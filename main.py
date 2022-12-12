@@ -55,6 +55,7 @@ for key, value in new_app_ads.items():
                 value.remove(element)
                 break    
     if len(value) > 1:
+        value.sort(key=len, reverse=True)
         del value[:-1]
     for element in value:
         insert_xlsx += [key.split(', ') + element.split(', ')] if type(element) == str else [key.split(', ') + [element]]
