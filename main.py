@@ -1,20 +1,21 @@
 import pandas as pd
 import re
 from operator import itemgetter
+import easygui
 
-'''Ссылки на входящие файлы.
-Подразумевается, что файл app-ads.xlsx находится в папке со скриптом.
-Файл tomerge.txt можно выбрать из любой директории'''
+'''При запуске кода откроется "проводник" для выбора файла tomerge.txt'''
 
 app_ads_xmlsx = 'app-ads.xlsx'
-locate = input('Укажите путь к файлу tomerge.txt или ., если файл в текущей папке: ')
+locate_tomerge = easygui.fileopenbox(filetypes = ['*.txt'])
+data_ads = []
+
 
 first_of_all_delete = 'Caramel Ads'
 data_ads = []
 new_app_ads = {}
 
 try:
-    with open(fr'{locate}\tomerge.txt', 'r') as f:
+    with open(locate_tomerge, 'r') as f:
         publisher_tomerge = f.readline().strip()
         adds_tomerge = f.readlines()
         for line in adds_tomerge:
